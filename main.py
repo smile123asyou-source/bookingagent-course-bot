@@ -48,7 +48,7 @@ async def main():
         print("新用户免费赠送 500万 token，刷完全部课估计只花几毛钱")
         return
 
-    base_url = os.getenv("DEEPSEEK_BASE_URL", "https://api.deepseek.com/v1")
+    base_url = os.getenv("DEEPSEEK_BASE_URL", "https://api.deepseek.com")
 
     # 加载登录状态（cookies + localStorage）
     with open(AUTH_FILE) as f:
