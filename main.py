@@ -69,12 +69,12 @@ async def main():
     agent = Agent(
         task=TASK,
         llm=ChatOpenAI(
-            model="deepseek-chat",
+            model="deepseek-v4-pro",
             base_url=base_url,
             api_key=api_key,
         ),
         browser=browser,
-        use_vision=True,
+        use_vision=False,  # DeepSeek 不支持图片，用 DOM 模式
     )
 
     try:
