@@ -11,16 +11,15 @@ from browser_use import Agent, Browser, BrowserProfile, ChatOpenAI
 
 load_dotenv()
 
-TARGET_URL = "https://zxpx.mr.mct.gov.cn"
+TARGET_URL = "https://zxpx.mr.mct.gov.cn/member/index.html#/home/train/publictask"
 AUTH_FILE = Path(__file__).parent / "auth.json"
 
 TASK = f"""
 请完成以下刷课任务，全程用中文理解和操作：
 
-1. 先打开 {TARGET_URL}/member/ 页面
-2. 在这个页面找到和「课程」「继续教育」「在线学习」「我的课程」相关的入口，点击进去
-3. 找到第一个状态不是「已完成」的课程，点进去开始学习
-4. 进入课程播放页面后：
+1. 打开页面: {TARGET_URL}
+2. 这个页面就是课程任务列表，找到第一个状态不是「已完成」的课程，点进去开始学习
+3. 进入课程播放页面后：
    - 找到播放按钮并点击开始播放
    - 视频播放期间，每1分钟左右检查一下有没有弹出「继续学习」「确认」「我知道了」之类的弹窗，有就点掉
    - 不要快进，让视频正常播放
