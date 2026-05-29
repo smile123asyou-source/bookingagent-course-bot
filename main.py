@@ -49,14 +49,15 @@ async def main():
         return
 
     base_url = os.getenv("DEEPSEEK_BASE_URL", "https://api.deepseek.com")
+    model = os.getenv("DEEPSEEK_MODEL", "deepseek-v4-flash")
 
     # 加载登录状态（cookies + localStorage）
     with open(AUTH_FILE) as f:
         storage_state = json.load(f)
 
     print("🚀 启动浏览器，开始自动刷课...")
-    print("💡 浏览器窗口会显示操作过程，阿阳可以围观")
-    print("💡 如果卡住了，关闭这个窗口重新运行 login.py → main.py\n")
+    print("💡 浏览器窗口会显示操作过程，可以围观")
+    print("💡 如果卡住了，关闭窗口重新运行 login.py → main.py\n")
 
     browser = Browser(
         browser_profile=BrowserProfile(
@@ -69,12 +70,14 @@ async def main():
     agent = Agent(
         task=TASK,
         llm=ChatOpenAI(
-            model="deepseek-v4-pro",
+            model=model,
             base_url=base_url,
             api_key=api_key,
+            temperature=0.0,           # 自动化不需要随机性
+            reasoning_effort="high",   # DeepSeek 只支持 high/max，默认 low 会报错
         ),
         browser=browser,
-        use_vision=False,  # DeepSeek 不支持图片，用 DOM 模式
+        use_vision=False,  # DeepSeek 不支持图片输入，用 DOM 模式
     )
 
     try:
